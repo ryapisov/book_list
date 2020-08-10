@@ -1,13 +1,21 @@
 //FORM NEW
 function formNewBook(bool=true){
-  const form = document.querySelector('.form')
-  const id = bookList.length + 1
-  const title = form.querySelector('.form__title')
+  let form, id, title, name, author, date, imgUrl
+
+  form = document.querySelector('.form')
+  id = bookList.length + 1
+
+  title = form.querySelector('.form__title')
   title.textContent = 'Новая книга'
-  const name = form.querySelector('input[name="name"]').value
-  const author = form.querySelector('input[name="author"]').value
-  const date = form.querySelector('input[name="date"]').value
-  const imgUrl = form.querySelector('input[name="image"]').value
+
+  name = form.querySelector('input[name="name"]').value
+
+  author = form.querySelector('input[name="author"]').value
+
+  date = form.querySelector('input[name="date"]').value
+
+  imgUrl = form.querySelector('input[name="image"]').value
+
   const button = form.querySelector('.form__button-save')
   bool ? button.addEventListener('click', addBook) : null
 
