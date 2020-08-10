@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Тестовое задание JUNIOR</title>
-		<link rel="stylesheet" type="text/css" href="style.css" >
-	</head>
-	<body>
 
-		<div class="page">
+<head>
+	<title>Тестовое задание JUNIOR</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-			<div class="container">
-	      <div class="container__title">
-				  <div class="title">Книжная полка</div>
-				</div>
-			  <div class="container__button">
-			  	<button class="addBookButton">Добавить книгу</button>
-			  </div>
-		  </div>
+<body>
+	<div class="page">
 
-	    <div class="container">
+		<div class="container">
+			<div class="container__title">
+				<div class="title">Книжная полка</div>
+			</div>
+			<div class="container__button">
+				<button class="addBookButton">Добавить книгу</button>
+			</div>
+		</div>
+
+		<div class="container">
+			<div id="display">
 				<div class="form">
-
-          <input type="hidden" name="id" value="">
-					<div class="form__title">Редактирование книги</div>
-					<div class="form__group">
-					  <label class="form__label" for="name">Наименование</label>
-				  	<input class="form__input" type="text" name="name" value="" required placeholder="">
-				  </div>
-					<div class="form__group">
-					  <label class="form__label" for="author">Автор</label>
-					  <input class="form__input" type="text" name="author" value="" required placeholder="">
-					</div>
-					<div class="form__group">
-					  <label class="form__label" for="date">Год выпуска</label>
-					  <input class="form__input form__input_date" type="text" name="date" value="" required placeholder="">
-				  </div>
-					<div class="form__group">
-					  <label class="form__label" for="image">Изображение</label>
-					  <input class="form__input" type="text" name="image" value="" required placeholder="">
-				  </div>
-					<div class="form__button-group">
-				  	<button class="form__button-save">Сохранить</button>
-					  <button class="form__button-cancel">Отменить</button>
-					</div>
-
+					<!-- <input type="hidden" value="">
+						<div class="form__title">Редактирование книги</div>
+						<div class="form__group">
+						  <label class="form__label" for="name">Наименование</label>
+					  	<input class="form__input" type="text" name="name" value="" required placeholder="">
+					  </div>
+						<div class="form__group">
+						  <label class="form__label" for="author">Автор</label>
+						  <input class="form__input" type="text" name="author" value="" required placeholder="">
+						</div>
+						<div class="form__group">
+						  <label class="form__label" for="date">Год выпуска</label>
+						  <input class="form__input form__input_date" type="text" name="date" value="" required placeholder="">
+					  </div>
+						<div class="form__group">
+						  <label class="form__label" for="image">Изображение</label>
+						  <input class="form__input" type="text" name="image" value="" required placeholder="">
+					  </div>
+						<div class="form__button-group">
+					  	<button class="form__button-save">Сохранить</button>
+						  <button class="form__button-cancel">Отменить</button>
+						</div> -->
 				</div>
 			</div>
+		</div>
 
-	    <div class="container">
-				<div class="table">
-
-          <div class="table__item" id="0">
+		<div class="container">
+			<div class="table">
+				<!-- <div class="table__item" id="0">
 						<div class="table__image">
 							<img class="table__img" src="https://avatars.mds.yandex.net/get-zen_doc/1657335/pub_5d81e6a743fdc000adb1fcde_5d81e6bcbd639600ad801d45/scale_1200" />
             </div>
@@ -62,18 +62,15 @@
 							<button class="table__button-edit">Редактировать</button>
 							<button class="table__button-delete">Удалить</button>
 						</div>
-					</div>
+					</div> -->
+			</div>
+		</div>
 
-				</div>
-		  </div>
+	</div>
 
-	  </div>
+	<script src="scripts/bookList.js"></script>
+	<script src="scripts/table.js"></script>
+	<script src="scripts/form.js"></script>
+</body>
 
-	  <script src="scripts/bookList.js"></script>
-	  <script src="scripts/table.js"></script>
-	  <script src="scripts/clearForm.js"></script>
-	  <script src="scripts/formNewBook.js"></script>
-	  <script src="scripts/formEditBook.js"></script>
-	  <script src="scripts/main.js"></script>
-	</body>
 </html>

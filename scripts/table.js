@@ -1,107 +1,94 @@
-//DISPLAY TABLE
-displayTableList()
+const table = document.querySelector('.table')
 
-function displayTableList(){
-  const table = document.querySelector('.table')
-
-  table.textContent = null
+function tableList(books) {
+  table.textContent = ''
 
   const fragment = document.createDocumentFragment()
 
-  bookList.forEach((book, i) => {
-    tableItem(book.id || i, book, fragment)
+  books.forEach((book) => {
+    fragment.appendChild(tableItem(book))
   })
-
   table.appendChild(fragment)
 }
 
-//ITEM TABLE
-function tableItem(id, book, fragment){
-  const divTableItem = createElement({
-    _tag:'div', _class:'table__item', _attr:'id',  _attrValue:id,
+function tableItem(book) {
+  const {
+    id,
+    name,
+    author,
+    date,
+    imgUrl
+  } = book
+
+  const tableItem = document.createElement('div')
+  tableItem.classList.add('table__item')
+  tableItem.setAttribute('id', id)
+
+  const tableImage = document.createElement('div')
+  tableImage.classList.add('table__image')
+
+  const image = document.createElement('img')
+  image.classList.add('table__img')
+  image.setAttribute('src', imgUrl)
+
+  tableImage.appendChild(image)
+  tableItem.appendChild(tableImage)
+
+  const tableGroupText = document.createElement('div')
+  tableGroupText.classList.add('table__group-text')
+
+  const tableName = document.createElement('p')
+  tableName.classList.add('table__name')
+  tableName.textContent = name
+
+  const tableAuthor = document.createElement('p')
+  tableAuthor.classList.add('table__author')
+  tableAuthor.textContent = author
+
+  const tableDate = document.createElement('p')
+  tableDate.classList.add('table__date')
+  tableDate.textContent = date
+
+  tableGroupText.appendChild(tableName)
+  tableGroupText.appendChild(tableAuthor)
+  tableGroupText.appendChild(tableDate)
+  tableItem.appendChild(tableGroupText)
+
+  const tableGroupButton = document.createElement('div')
+  tableGroupButton.classList.add('table__group-button')
+
+  const buttonEdit = document.createElement('button')
+  buttonEdit.classList.add('table__button-edit')
+  buttonEdit.textContent = "Редактировать"
+
+  buttonEdit.addEventListener('click', () => {
+    buttonEdit.disabled = true
+    formNew(book)
   })
 
-  const divTableImage = createElement({
-    _tag:'div', _class:'table__image'
+  const buttonDelete = document.createElement('button')
+  buttonDelete.classList.add('table__button-delete')
+  buttonDelete.textContent = "Удалить"
+
+  buttonDelete.addEventListener('click', () => {
+    const tableItemDelete = table.querySelector(`div[id="${id}"]`)
+    table.removeChild(tableItemDelete)
+    deleteBook(id)
   })
 
-  const divTableGroupText = createElement({
-    _tag:'div', _class:'table__group-text'
-  })
+  tableGroupButton.appendChild(buttonEdit)
+  tableGroupButton.appendChild(buttonDelete)
+  tableItem.appendChild(tableGroupButton)
 
-  const divTableGroupButton = createElement({
-    _tag: 'div', _class: 'table__group-button'
-  })
-
-  const imgPicture = createElement({
-    _tag:'img', _class:'table__img', _attr:'src', _attrValue:book.imgUrl || ''
-  })
-
-  const pName = createElement({
-    _tag:'p', _class:'table__name', _content:book.name
-  })
-
-  const pAuthor = createElement({
-    _tag:'p', _class:'table__author',_content:book.author
-  })
-  const pDate = createElement({
-    _tag:'p', _class:'table__date', _content:book.date
-  })
-  //buttons
-  const editButton = createElement({
-    _tag:'button', _class:'table__button-edit', _content:'Редактировать'
-  })
-
-  const deleteButton = createElement({
-    _tag:'button', _class:'table__button-delete', _content:'Удалить'
-  })
-
-  editButton.addEventListener( 'click', ()=> editTableElement(id) )
-  deleteButton.addEventListener( 'click', ()=> deleteTableItem(id) )
-
-  divTableGroupButton.appendChild( editButton )
-  divTableGroupButton.appendChild( deleteButton )
-
-  divTableGroupText.appendChild( pName )
-  divTableGroupText.appendChild( pAuthor )
-  divTableGroupText.appendChild( pDate )
-
-  divTableImage.appendChild( imgPicture )
-  divTableItem.appendChild( divTableImage )
-  divTableItem.appendChild( divTableGroupText  )
-  divTableItem.appendChild( divTableGroupButton )
-
-  fragment.appendChild(divTableItem)
+  return tableItem
 }
 
-function editTableElement(id){
-  let someBook = bookList.find(function(book) {
-    return book.id == id
-  })
-
-  formEditBook(someBook)
-}
-
-function deleteTableItem(id){
-  const index = bookList.findIndex(book => book.id === id)
-
-  if(index !== -1){
+function deleteBook(id) {
+  const index = bookList.findIndex(n => n.id == id)
+  if (index !== -1) {
     bookList.splice(index, 1)
-  }
-
-  displayTableList()
-}
-
-//HELPERS
-function createElement({_tag, _class, _attr, _attrValue, _content}){
-  const element = document.createElement(_tag)
-  if (_class) element.classList.add(_class)
-  if (_attr) element.setAttribute(_attr, _attrValue)
-  if (_content) element.textContent = _content
-  return element
-}
-function appendChild(where, ...elements){
-  if(elements && where) {
-    elements.forEach((elem)=> where.appendChild(elem))
+    console.log(bookList)
   }
 }
+
+tableList(bookList)
