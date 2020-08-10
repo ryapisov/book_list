@@ -74,9 +74,10 @@ function formNew(book) {
 
   const inputDate = document.createElement('input')
   inputDate.classList.add('form__input')
+  inputDate.classList.add('form__input_date')
   inputDate.setAttribute('type', 'text')
   inputDate.setAttribute('name', 'date')
-  inputDate.setAttribute('value', book?.date ? book.date : '')
+  inputDate.setAttribute('value', book?.date ? book?.date : '')
 
   formDateGroup.appendChild(labelDate)
   formDateGroup.appendChild(inputDate)
@@ -123,7 +124,7 @@ function formNew(book) {
     formDisplay.removeChild(form)
     // отменить disabled у всех кнопок
     const buttons = document.querySelectorAll('button')
-    buttons.forEach((btn)=> btn.disabled = false )
+    buttons.forEach((btn) => btn.disabled = false)
   })
 
   formButtonGroup.appendChild(buttonSave)
@@ -144,7 +145,7 @@ function getDataForm() {
   book.id = Number(document.querySelector('input[name="id"]').value)
   book.name = document.querySelector('input[name="name"]').value
   book.author = document.querySelector('input[name="author"]').value
-  book.date = document.querySelector('input[name="date"]').value
+  book.date = validDate(document.querySelector('input[name="date"]').value)
   book.imgUrl = document.querySelector('input[name="image"]').value
 
   return book
@@ -168,4 +169,13 @@ function saveCurrentBook() {
   }
   tableList(bookList)
   console.log(bookList)
+}
+
+function validDate(year) {
+  if (year.replace(/\s/g, '').length === 0 || isNaN(year)){
+    return 'Год не указан'
+  }
+
+  if (2017 < Number(year)) return 'укажите год не более 2017'
+  return year
 }
