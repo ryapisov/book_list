@@ -30,7 +30,6 @@ function tableItem(book) {
   const image = document.createElement('img')
   image.classList.add('table__img')
   image.setAttribute('src', imgUrl)
-  image.setAttribute('src', imgUrl)
   image.setAttribute('alt', 'нет фото')
 
   tableImage.appendChild(image)
